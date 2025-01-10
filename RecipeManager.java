@@ -1,7 +1,7 @@
 /**
  * author: Rami Maarouf
  * date: 01/10/2024
- * Recipe Manager 
+ * Recipe Manager CPT
  */
 
 import java.util.ArrayList;
@@ -12,23 +12,17 @@ class Recipe {
     String ingredients;
     String instructions;
     int calories;
-    boolean isHealthy;
 
-    public Recipe(String name, String ingredients, String instructions, int calories, boolean isHealthy) {
+    public Recipe(String name, String ingredients, String instructions, int calories) {
         this.name = name;
         this.ingredients = ingredients;
         this.instructions = instructions;
         this.calories = calories;
-        this.isHealthy = isHealthy;
     }
 
     @Override
     public String toString() {
-        return "Recipe Name: " + name + 
-               "\nIngredients: " + ingredients + 
-               "\nInstructions: " + instructions + 
-               "\nCalories: " + calories + 
-               "\nHealthy: " + (isHealthy ? "Yes" : "No");
+        return "Recipe Name: " + name + "\nIngredients: " + ingredients + "\nInstructions: " + instructions + calories + "\nCalories: ";
     }
 }
 
@@ -44,7 +38,7 @@ public class RecipeManager {
             System.out.println("3. Exit");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
-            scanner.nextLine();  
+            scanner.nextLine();  // Consume newline
 
             switch (choice) {
                 case 1:
@@ -69,12 +63,7 @@ public class RecipeManager {
         String ingredients = scanner.nextLine();
         System.out.print("Enter instructions: ");
         String instructions = scanner.nextLine();
-        System.out.print("Enter calories: ");
-        int calories = scanner.nextInt();
-        System.out.print("Is the recipe healthy (true/false)? ");
-        boolean isHealthy = scanner.nextBoolean();
-        scanner.nextLine();  
-        Recipe recipe = new Recipe(name, ingredients, instructions, calories, isHealthy);
+        Recipe recipe = new Recipe(name, ingredients, instructions, 0);
         recipes.add(recipe);
         System.out.println("Recipe added successfully!");
     }

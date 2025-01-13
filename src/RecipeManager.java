@@ -32,19 +32,68 @@ class Recipe {
     }
 }
 
+class HalalRecipe extends Recipe {
+    public HalalRecipe(String name, String ingredients, String instructions, int calories, boolean isHealthy) {
+        super(name, ingredients, instructions, calories, isHealthy);
+    }
+
+    @Override
+    public String toString() {
+        return "Halal " + super.toString();
+    }
+}
+
+class VegetarianRecipe extends Recipe {
+    public VegetarianRecipe(String name, String ingredients, String instructions, int calories, boolean isHealthy) {
+        super(name, ingredients, instructions, calories, isHealthy);
+    }
+
+    @Override
+    public String toString() {
+        return "Vegetarian " + super.toString();
+    }
+}
+
+class NonVegetarianRecipe extends Recipe {
+    public NonVegetarianRecipe(String name, String ingredients, String instructions, int calories, boolean isHealthy) {
+        super(name, ingredients, instructions, calories, isHealthy);
+    }
+
+    @Override
+    public String toString() {
+        return "Non-Vegetarian " + super.toString();
+    }
+}
+
+class VeganRecipe extends Recipe {
+    public VeganRecipe(String name, String ingredients, String instructions, int calories, boolean isHealthy) {
+        super(name, ingredients, instructions, calories, isHealthy);
+    }
+
+    @Override
+    public String toString() {
+        return "Vegan " + super.toString();
+    }
+}
+
 public class RecipeManager {
     private static ArrayList<Recipe> recipes = new ArrayList<>();
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("\nRecipe Manager");
-            System.out.println("1. Add Recipe");
-            System.out.println("2. View Recipes");
-            System.out.println("3. Exit");
-            System.out.print("Choose an option: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+  
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.println("\nRecipe Manager");
+                System.out.println("1. Add Halal Recipe");
+                System.out.println("2. Add Vegetarian Recipe");
+                System.out.println("3. Add Non-Vegetarian Recipe");
+                System.out.println("4. Add Vegan Recipe");
+                System.out.println("5. View Recipes");
+                System.out.println("6. Update Recipe");
+                System.out.println("7. Delete Recipe");
+                System.out.println("8. Exit");
+                System.out.print("Choose an option: ");
+                int choice = scanner.nextInt();
+                scanner.nextLine();  // Consume newline
 
             switch (choice) {
                 case 1:

@@ -6,8 +6,11 @@
 
  import java.util.ArrayList;
  import java.util.Scanner;
+ import java.util.Stack;
  
- // Base class for all recipes
+ /** 
+ * Base class for all recipes
+ */
  class BaseRecipe {
      String name;
      String ingredients;
@@ -15,7 +18,14 @@
      int calories;
      boolean isHealthy;
  
-     // Constructor to initialize recipe attributes
+     /**  
+     * Constructor to initialize the recipe's details
+     * @param name: the name of the recipe
+     * @param ingredients: the ingredients of the recipe
+     * @param instructions: the instructions how the recipe is made
+     * @param calories: how many calories in the recipe
+     * @param isHealthy: determines it the recipe is healthy or not
+     */
      public BaseRecipe(String name, String ingredients, String instructions, int calories, boolean isHealthy) {
          this.name = name;
          this.ingredients = ingredients;
@@ -24,7 +34,10 @@
          this.isHealthy = isHealthy;
      }
  
-     // Override toString method to display recipe details
+     /**  
+     * Returns the string representation of the recipe
+     * @return the recipe's details
+     */
      @Override
      public String toString() {
          return "Recipe Name: " + name +
@@ -41,7 +54,7 @@
          super(name, ingredients, instructions, calories, isHealthy);
      }
  
-     // Override toString method to include Halal prefix
+     // Override toString method to include Halal in the type of recipes
      @Override
      public String toString() {
          return "Halal " + super.toString();
@@ -54,7 +67,7 @@
          super(name, ingredients, instructions, calories, isHealthy);
      }
  
-     // Override toString method to include Vegetarian prefix
+     // Override toString method to include Vegetarian in the type of recipes
      @Override
      public String toString() {
          return "Vegetarian " + super.toString();
@@ -67,7 +80,7 @@
          super(name, ingredients, instructions, calories, isHealthy);
      }
  
-     // Override toString method to include Non-Vegetarian prefix
+     // Override toString method to include Non-Vegetarian in the type of recipes
      @Override
      public String toString() {
          return "Non-Vegetarian " + super.toString();
@@ -80,16 +93,21 @@
          super(name, ingredients, instructions, calories, isHealthy);
      }
  
-     // Override toString method to include Vegan prefix
+     // Override toString method to include Vegan in the type of recipes
      @Override
      public String toString() {
          return "Vegan " + super.toString();
      }
  }
+
+ // Classes for all types of Recipes: Halal, Vegetarian, NonVegetarian, and Vegan
  
- // Main class to manage recipes
+ /**  
+ * Main class to manage the recipes
+ */
  public class RecipeManager {
      private static ArrayList<BaseRecipe> recipes = new ArrayList<>();
+     private static Stack<BaseRecipe> favoriteRecipes = new Stack<>();
  
      public static void main(String[] args) {
          Scanner scanner = new Scanner(System.in);
@@ -104,12 +122,14 @@
              System.out.println("5. View Recipes");
              System.out.println("6. Update Recipe");
              System.out.println("7. Delete Recipe");
-             System.out.println("8. Exit");
+             System.out.println("8. Favorite a Recipe");
+             System.out.println("9. View Favorite Recipes");
+             System.out.println("10. Exit");
              System.out.print("Choose an option: ");
              int choice = scanner.nextInt();
-             scanner.nextLine();  // Consume newline
+             scanner.nextLine();  // Puts all the options on seperate lines
  
-             // Handle menu choice
+             // Menu handle choices
              switch (choice) {
                  case 1:
                      addRecipe(scanner, "Halal");
@@ -132,7 +152,13 @@
                  case 7:
                      deleteRecipe(scanner);
                      break;
-                 case 8:
+                 case 8: 
+                     favoriteRecipe(scanner); 
+                     break; 
+                case 9: 
+                     viewFavoriteRecipes(); 
+                     break;
+                 case 10:
                      System.out.println("Exiting...");
                      return;
                  default:
@@ -141,7 +167,11 @@
          }
      }
  
-     // Method to add a new recipe
+     /**
+      * Method to add a new recipe.
+      * @param scanner is the scanner object to see what the user inputs
+      * @param type is the type of the recipe the user wants to add
+      */
      private static void addRecipe(Scanner scanner, String type) {
          System.out.print("Enter recipe name: ");
          String name = scanner.nextLine();
@@ -154,13 +184,13 @@
  
          System.out.print("Enter calories: ");
          int calories = scanner.nextInt();
-         scanner.nextLine();  // Consume newline
+         scanner.nextLine();  // Next line
  
          System.out.print("Is the recipe healthy (true/false)? ");
          boolean isHealthy = scanner.nextBoolean();
-         scanner.nextLine();  // Consume newline
+         scanner.nextLine();  // Next line
  
-         // Create a new recipe based on type
+         // Create a new recipe based on the type
          BaseRecipe recipe = null;
          switch (type) {
              case "Halal":
@@ -182,7 +212,9 @@
          System.out.println(type + " recipe added successfully!");
      }
  
-     // Method to view all recipes
+     /**
+      * Method to view all recipes
+      */
      private static void viewRecipes() {
          if (recipes.isEmpty()) {
              System.out.println("No recipes available.");
@@ -194,7 +226,10 @@
          }
      }
  
-     // Method to update an existing recipe
+     /**
+      * Method to update an existing recipe
+      * @param scanner to scan objects for user's input
+      */
      private static void updateRecipe(Scanner scanner) {
          System.out.print("Enter the recipe name to update: ");
          String name = scanner.nextLine();
@@ -216,13 +251,13 @@
  
              System.out.print("Enter new calories: ");
              int calories = scanner.nextInt();
-             scanner.nextLine();  // Consume newline
+             scanner.nextLine();  // Next line
  
              System.out.print("Is the recipe healthy (true/false)? ");
              boolean isHealthy = scanner.nextBoolean();
-             scanner.nextLine();  // Consume newline
+             scanner.nextLine();  // Next line
  
-             // Update recipe details
+             // Update the recipe's details
              recipeToUpdate.ingredients = ingredients;
              recipeToUpdate.instructions = instructions;
              recipeToUpdate.calories = calories;
@@ -234,7 +269,10 @@
          }
      }
  
-     // Method to delete a recipe
+     /**
+      * Method to delete a recipe
+      * @param scanner the scanner object for the user's input
+      */
      private static void deleteRecipe(Scanner scanner) {
          System.out.print("Enter the recipe name to delete: ");
          String name = scanner.nextLine();
@@ -254,5 +292,43 @@
              System.out.println("Recipe not found.");
          }
      }
- }
+      
+    /**
+     * Method to mark a recipe as favorite
+     * @param scanner the scanner object for the user's input
+     */
+    private static void favoriteRecipe(Scanner scanner) {
+        System.out.print("Enter the recipe name to favorite: ");
+        String name = scanner.nextLine();
+
+        BaseRecipe recipeToFavorite = null;
+        for (BaseRecipe recipe : recipes) {
+            if (recipe.name.equalsIgnoreCase(name)) {
+                recipeToFavorite = recipe;
+                break;
+            }
+        }
+
+        if (recipeToFavorite != null) {
+            favoriteRecipes.push(recipeToFavorite);
+            System.out.println("Recipe favorited successfully!");
+        } else {
+            System.out.println("Recipe not found.");
+        }
+    }
+
+    /**
+     * Method to view all favorite recipes
+     */
+    private static void viewFavoriteRecipes() {
+        if (favoriteRecipes.isEmpty()) {
+            System.out.println("No favorite recipes available.");
+        } else {
+            for (BaseRecipe recipe : favoriteRecipes) {
+                System.out.println(recipe);
+                System.out.println("-------------------------");
+            }
+        }
+    }
+}
  

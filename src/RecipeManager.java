@@ -1,12 +1,12 @@
-/**
+ import java.util.ArrayList;
+ import java.util.Scanner;
+ import java.util.Stack;
+
+ /**
  * Author: Rami Maarouf
  * Date: 01/17/2025
  * RecipeManager for Users!
  */
-
- import java.util.ArrayList;
- import java.util.Scanner;
- import java.util.Stack;
  
  /** 
  * Base class for all recipes
@@ -39,7 +39,7 @@
      * @return the recipe's details
      */
      @Override
-     public String toString() {
+     public String toString() { // Combination of Research, notes, & AI to code these lines
          return "Recipe Name: " + name +
                 "\nIngredients: " + ingredients +
                 "\nInstructions: " + instructions +
@@ -172,7 +172,7 @@
       * @param scanner is the scanner object to see what the user inputs
       * @param type is the type of the recipe the user wants to add
       */
-     private static void addRecipe(Scanner scanner, String type) {
+     static void addRecipe(Scanner scanner, String type) { // AI helped me with this portion of the code
          System.out.print("Enter recipe name: ");
          String name = scanner.nextLine();
  
@@ -236,7 +236,7 @@
  
          BaseRecipe recipeToUpdate = null;
          for (BaseRecipe recipe : recipes) {
-             if (recipe.name.equalsIgnoreCase(name)) {
+             if (recipe.name.equalsIgnoreCase(name)) { // AI helped me with this line 
                  recipeToUpdate = recipe;
                  break;
              }
@@ -273,7 +273,7 @@
       * Method to delete a recipe
       * @param scanner the scanner object for the user's input
       */
-     private static void deleteRecipe(Scanner scanner) {
+     static void deleteRecipe(Scanner scanner) {
          System.out.print("Enter the recipe name to delete: ");
          String name = scanner.nextLine();
  
@@ -297,7 +297,7 @@
      * Method to mark a recipe as favorite
      * @param scanner the scanner object for the user's input
      */
-    private static void favoriteRecipe(Scanner scanner) {
+    static void favoriteRecipe(Scanner scanner) {
         System.out.print("Enter the recipe name to favorite: ");
         String name = scanner.nextLine();
 

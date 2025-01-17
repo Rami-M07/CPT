@@ -27,3 +27,12 @@ This method takes a Scanner object as a parameter. It asks the user to enter the
 # Method to viewFavoriteRecipes (To view your favorite recipes):
 
 This method checks if the stack of favorite recipes is empty. If not, it goes through the stack of favorite recipes and prints out the details of each recipe. If the stack is empty, it displays a message saying that there are no favorite recipes available.
+
+# Known issues or limitations
+- If user enters for example a letter into the int calories, then the system crashes and must be ran again
+- User must be careful when entering recipe name, for example, when entering the recipe name, do not press the space bar after as you will have issues finding the recipe later on
+
+# Credits
+- Name: Rami Maarouf
+- Grade: 12
+- Date completed: 01/17/2025

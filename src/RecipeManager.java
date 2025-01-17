@@ -159,10 +159,10 @@
                      viewFavoriteRecipes(); 
                      break;
                  case 10:
-                     System.out.println("Exiting...");
+                     System.out.println("See you next time! :)");
                      return;
                  default:
-                     System.out.println("Invalid choice. Please try again.");
+                     System.out.println("Invalid choice! :( Try again!");
              }
          }
      }
@@ -215,7 +215,7 @@
      /**
       * Method to view all recipes
       */
-     private static void viewRecipes() {
+     static void viewRecipes() {
          if (recipes.isEmpty()) {
              System.out.println("No recipes available.");
          } else {
@@ -230,7 +230,7 @@
       * Method to update an existing recipe
       * @param scanner to scan objects for user's input
       */
-     private static void updateRecipe(Scanner scanner) {
+     public static void updateRecipe(Scanner scanner) {
          System.out.print("Enter the recipe name to update: ");
          String name = scanner.nextLine();
  
@@ -273,7 +273,7 @@
       * Method to delete a recipe
       * @param scanner the scanner object for the user's input
       */
-     static void deleteRecipe(Scanner scanner) {
+    public static void deleteRecipe(Scanner scanner) {
          System.out.print("Enter the recipe name to delete: ");
          String name = scanner.nextLine();
  
@@ -320,7 +320,7 @@
     /**
      * Method to view all favorite recipes
      */
-    private static void viewFavoriteRecipes() {
+    public static void viewFavoriteRecipes() {
         if (favoriteRecipes.isEmpty()) {
             System.out.println("No favorite recipes available.");
         } else {
@@ -329,6 +329,14 @@
                 System.out.println("-------------------------");
             }
         }
+    }
+
+    public static ArrayList<BaseRecipe> getRecipes() {
+        return recipes; // Getters
+    }
+
+    public static Stack<BaseRecipe> getFavoriteRecipes() {
+        return favoriteRecipes; // Getters 
     }
 }
  
